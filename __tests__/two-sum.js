@@ -3,7 +3,7 @@ const { twoSum } = require("../algos/two-sum.js");
 describe("twoSum test", () => {
   let arr;
 
-  it("should return true if two numbers sum to n", () => {
+  it("should return array of correct indexs if two numbers sum to n", () => {
     arr = [1, 4, 7, 12, 9];
     expect(JSON.stringify(twoSum(arr, 10))).toBe(JSON.stringify([0, 4]));
     arr = [1, 4, 7, 12, 9];
