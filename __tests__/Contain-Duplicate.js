@@ -1,4 +1,4 @@
-const { containsDuplicate } = require("../algos/Contain-Duplicate");
+const { containsDuplicate } = require("../algos/contain-duplicate");
 
 describe("containsDuplicate test", () => {
   let nums;

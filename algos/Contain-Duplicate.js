@@ -13,12 +13,17 @@
  */
 
 const containsDuplicate = (nums) => {
-  const newSet = new Set(nums);
-  // console.log(newSet.size)
-  if (newSet.size !== nums.length) return true;
-  else return false;
-};
+  // const newSet = new Set(nums);
+  // // console.log(newSet.size)
+  // if (newSet.size !== nums.length) return true;
+  // else return false;
 
-console.log(containsDuplicate([1, 2, 3, 4]));
+  let newSet = new Set();
+  for (let i = 0; i < nums.length; i++) {
+    if (newSet.has(nums[i])) return true;
+    newSet.add(nums[i]);
+  }
+  return false;
+};
 
 module.exports = { containsDuplicate };

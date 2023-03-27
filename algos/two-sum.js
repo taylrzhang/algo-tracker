@@ -33,6 +33,4 @@ var twoSum = function (nums, target) {
   return [];
 };
 
-// console.log(twoSum([1, 4, 7, 2, 9, 0], 7));
-
 module.exports = { twoSum };
