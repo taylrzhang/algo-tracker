@@ -16,7 +16,7 @@ Explanation: Because nums[0] + nums[1] == 9, we return [0, 1].
  * @return {number[]}
  */
 var twoSum = function (nums, target) {
-  //declare a chacke object to store num and index
+  //declare a cache object to store num and index
   //loop through nums
   //diff is target minus curr value
   //if found diff, return [curr index and diff index]
