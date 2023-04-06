@@ -22,6 +22,7 @@ const topKFrequent = (nums, k) => {
     cache[num]++;
   });
   let result = Object.keys(cache).map((key) => [Number(key), cache[key]]);
+  console.log(result);
   let sortedResult = result.sort((a, b) => {
     return b[1] - a[1];
   });
@@ -32,4 +33,5 @@ const topKFrequent = (nums, k) => {
   return output;
 };
 
+console.log(topKFrequent([1, 1, 1, 2, 2, 3], 2));
 module.exports = { topKFrequent };
