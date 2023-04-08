@@ -26,9 +26,9 @@ var diameterOfBinaryTree = function (root) {
     //console.log(node.value)
     let left = dfs(node.left);
     let right = dfs(node.right);
-    console.log(node.value, [left, right]);
+    // console.log(node.value, [left, right]);
     max = Math.max(left + right, max);
-    console.log(max);
+    // console.log(max);
     return Math.max(left, right) + 1;
   };
 

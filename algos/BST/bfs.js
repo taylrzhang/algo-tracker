@@ -10,14 +10,13 @@
  * @param {TreeNode} root
  * @return {number[][]}
  */
-function BinaryTree(value) {
-  this.value = value;
+function BinaryTree(val) {
+  this.val = val;
   this.left = null;
   this.right = null;
 }
 
-const bfs = (tree) => {
-  if (!root) return [];
+const bfs = (root) => {
   const result = [];
   const q = [root];
   let l;
@@ -32,5 +31,14 @@ const bfs = (tree) => {
     }
     result.push(sub);
   }
+  // console.log(result.join(":").toString());
   return result;
 };
+
+const tree = new BinaryTree(4);
+tree.left = new BinaryTree(2);
+tree.right = new BinaryTree(5);
+tree.left.left = new BinaryTree(1);
+tree.left.right = new BinaryTree(3);
+
+console.log(bfs(tree));

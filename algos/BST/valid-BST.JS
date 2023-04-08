@@ -44,7 +44,6 @@ function BinaryTree(value) {
 //     if (tree.value >= max || tree.value <= min) {
 //       return false;
 //     }
-//     // console.log(tree.value);
 //     return (
 //       depthFirstSearch(tree.left, tree.value, min) &&
 //       depthFirstSearch(tree.right, max, tree.value)
@@ -60,7 +59,6 @@ const validBST = (tree) => {
 
   const depthFirstIn = (tree) => {
     if (!tree) return;
-    console.log(tree.value);
     depthFirstIn(tree.left);
     values.push(tree.value);
     depthFirstIn(tree.right);
