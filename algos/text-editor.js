@@ -1,6 +1,6 @@
 var TextEditor = function () {
-  this.cursor = 0;
-  this.typing = "";
+  this.forward = [];
+  this.backward = [];
 };
 
 /**
@@ -8,16 +8,9 @@ var TextEditor = function () {
  * @return {void}
  */
 TextEditor.prototype.addText = function (text) {
-  if (this.typing[this.cursor] !== undefined) {
-    const right = this.typing.slice(this.cursor + 1, this.typing.length);
-    const left = this.typing.slice(0, this.cursor);
-
-    this.typing = left + text + right;
-  } else {
-    this.typing += text;
+  for (let letter of text) {
+    this.forward.push(letter);
   }
-  this.cursor += text.length - 1;
-  console.log(this.cursor, text.length, this.typing);
 };
 
 /**
@@ -25,18 +18,12 @@ TextEditor.prototype.addText = function (text) {
  * @return {number}
  */
 TextEditor.prototype.deleteText = function (k) {
-  const left = this.typing.slice(0, this.cursor);
-  if (this.typing[this.cursor] !== undefined) {
-    const right = this.typing.slice(this.cursor, this.typing.length);
-
-    this.typing = left.slice(0, Math.max((this.cursor - k, 0))) + right;
-  } else {
-    console.log(this.cursor, this.typing);
-    this.typing = left.slice(0, Math.max(this.cursor - k, 0));
+  let deleted = 0;
+  while (this.forward.length && deleted < k) {
+    this.forward.pop();
+    deleted++;
   }
-  this.cursor = Math.max(this.cursor - k, 0);
-  if (left.length >= k) return k;
-  else return left.length;
+  return deleted;
 };
 
 /**
@@ -44,12 +31,12 @@ TextEditor.prototype.deleteText = function (k) {
  * @return {string}
  */
 TextEditor.prototype.cursorLeft = function (k) {
-  while (k > 0 && this.cursor > 0) {
-    this.cursor--;
-    k--;
+  let moved = 0;
+  while (this.forward.length && moved < k) {
+    this.backward.push(this.forward.pop());
+    moved++;
   }
-  if (this.cursor < 10) return this.typing.slice(0, this.cursor);
-  else return this.typying.slice(this.cursor - 10, this.cursor);
+  return toTheLeft(this.forward);
 };
 
 /**
@@ -57,13 +44,22 @@ TextEditor.prototype.cursorLeft = function (k) {
  * @return {string}
  */
 TextEditor.prototype.cursorRight = function (k) {
-  while (k > 0 && this.cursor < this.typing.length) {
-    this.cursor++;
-    k--;
+  let moved = 0;
+  while (moved < k && this.backward.length) {
+    this.forward.push(this.backward.pop());
+    moved++;
   }
-  if (this.cursor < 10) return this.typing.slice(0, this.cursor);
-  else return this.typing.slice(this.cursor - 10, this.cursor);
+  return toTheLeft(this.forward);
 };
+
+function toTheLeft(arr) {
+  let letters = [];
+  for (let i = Math.max(0, arr.length - 10); i < arr.length; i++) {
+    letters.push(arr[i]);
+  }
+  let res = letters.join("");
+  return res;
+}
 
 /**
  * Your TextEditor object will be instantiated and called as such:
