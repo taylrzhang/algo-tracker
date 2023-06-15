@@ -24,10 +24,15 @@ const bfs = (root) => {
     l = q.length;
     const sub = [];
     for (let i = 0; i < l; i++) {
-      sub.push(q[0].val);
-      if (q[0].left !== null) q.push(q[0].left);
-      if (q[0].right !== null) q.push(q[0].right);
-      q.shift(q[0]);
+      let temp = q.shift();
+      sub.push(temp.val);
+      if (temp.left !== null) q.push(temp.left);
+      if (temp.right !== null) q.push(temp.right);
+
+      // sub.push(q[0].val);
+      // if (q[0].left !== null) q.push(q[0].left);
+      // if (q[0].right !== null) q.push(q[0].right);
+      // q.shift(q[0]);
     }
     result.push(sub);
   }

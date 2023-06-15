@@ -17,9 +17,10 @@ const merge = (intervals) => {
 
   for (let curr of intervals) {
     if (prev[1] >= curr[0]) {
-      prev[1] = Math.max(curr[1], prev[1]); //take the largest number
+      //overlapped
+      prev[1] = Math.max(curr[1], prev[1]); //take the largest end number
     } else {
-      merged.push(curr);
+      merged.push(curr); //push it until no more to be merged
       prev = curr;
     }
   }
@@ -28,8 +29,8 @@ const merge = (intervals) => {
 
 const test = merge([
   [1, 3],
-  [8, 9],
-  [4, 10],
+  [3, 9],
+  [2, 6],
   [15, 18],
 ]);
 console.log(test);
