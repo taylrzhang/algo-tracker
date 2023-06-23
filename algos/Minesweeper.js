@@ -43,7 +43,7 @@ var updateBoard = function (board, click) {
     //than we gonna check on empty squares, aka clickable, so if not, return
     if (board[r][c] !== "E") return;
     //get the adjacent mines nums, if it has, reassign with the num, then return
-    //otherwise, dfs the other possible directions
+    //otherwise, dfs the other possible directions recursively
     const nums = getAdjacentMines(r, c);
     if (nums) {
       board[r][c] = nums.toString();
@@ -57,6 +57,7 @@ var updateBoard = function (board, click) {
       }
     }
   }
+
   function getAdjacentMines(x, y) {
     let nums = 0;
     for (let i = Math.max(x - 1, 0); i < Math.min(x + 2, m); i++) {
