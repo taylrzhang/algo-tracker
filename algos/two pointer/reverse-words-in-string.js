@@ -24,6 +24,9 @@ var reverseWords = function (s) {
   return s.join(" ");
 };
 
+// time complecity: O(n)
+//space: o(n)
+
 console.log(reverseWords(" Hello World "));
 console.log(reverseWords("The quick brown fox jumped over the lazy dog"));
 console.log(reverseWords("To be, or not to be"));
