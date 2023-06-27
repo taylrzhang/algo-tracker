@@ -4,8 +4,8 @@
 var FirstUnique = function (nums) {
   this.map = {};
   //dummy head and tail
-  this.head = Node(-1);
-  this.tail = Node(-1);
+  this.head = new Node(-1);
+  this.tail = new Node(-1);
   this.head.next = this.tail;
   this.tail.prev = this.head;
 
@@ -39,7 +39,7 @@ FirstUnique.prototype.add = function (value) {
       node.next = null;
     }
   } else {
-    let newNode = Node(value);
+    let newNode = new Node(value);
 
     let last = this.tail.prev;
     last.next = newNode;
