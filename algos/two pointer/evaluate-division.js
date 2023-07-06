@@ -47,9 +47,9 @@ var calcEquation = function (equations, values, queries) {
     let que = [[src, 1]];
     let seen = new Set();
     seen.add(src);
-
     while (que.length > 0) {
       [n, w] = que.shift();
+      console.log(n, target);
 
       if (n === target) return w;
       for (let nei of cache[n]) {
@@ -69,10 +69,10 @@ let equations = [
 ];
 let values = [2.0, 3.0, 4.0];
 let queries = [
-  ["a", "c"],
-  ["b", "a"],
-  ["a", "d"],
   ["a", "a"],
-  ["x", "x"],
+  // ["b", "a"],
+  // ["a", "d"],
+  // ["a", "a"],
+  // ["x", "x"],
 ];
 console.log(calcEquation(equations, values, queries)); //-> [6.00000,0.50000,-1.00000,1.00000,-1.00000]
