@@ -1,5 +1,4 @@
 function isHappyNumber(n) {
-  // your code will replace this placeholder return statement
   if (n === 1) return true;
   let fast = sumOfSquaredDigits(n),
     slow = n;

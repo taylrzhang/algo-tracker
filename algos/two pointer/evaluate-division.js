@@ -22,7 +22,7 @@ return: [6.0, 0.5, -1.0, 1.0, -1.0 ]
  * @return {number[]}
  */
 var calcEquation = function (equations, values, queries) {
-  //loop through equations store src -> target and weight in cache
+  //loop through equations store src -> target and weight in cache(both way)
   //loop through queries
   //loop through cache with bfs to find target, store curr v and wright in queue
   //if src or target not in cache return -1

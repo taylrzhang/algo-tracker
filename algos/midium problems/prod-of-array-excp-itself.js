@@ -17,11 +17,12 @@ Output: [0,0,9,0,0]
 
 var productExceptSelf = function (nums) {
   //loop through nums from the beginning
-  //set the curr prod as prefix
-  //set prefix as curr num multiplied by last prefix
+  //put the curr prod as prefix
+  //put prefix as curr num multiplied by last prefix
+
   //loop through nums from the end
-  //set the curr prod as prefix multiplied by postfix
-  //set postfix as curr num multiplied by last postfix
+  //put the curr prod as prefix multiplied by postfix
+  //put postfix as curr num multiplied by last postfix
   const prods = [];
   let prefix = 1;
   let postfix = 1;

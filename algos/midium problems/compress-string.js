@@ -50,6 +50,3 @@ const compress = (chars) => {
 console.log(
   compress(["a", "b", "b", "b", "b", "b", "b", "b", "b", "b", "b", "b", "b"])
 );
-
-const num = 122;
-console.log(num % 10, Math.floor(num / 10));
