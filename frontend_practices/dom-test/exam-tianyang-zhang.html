@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <div class="container">
+      <input type="text" id="valueInput" />
+      <button class="add">Add</button>
+      <ul class="list"></ul>
+    </div>
+    <script>
+      const valueInput = document.querySelector("#valueInput");
+      const addBtn = document.querySelector(".add");
+      const list = document.querySelector(".list");
+      let tasks = [];
+
+      addBtn.addEventListener("click", addTask);
+
+      function addTask() {
+        const taskText = valueInput.value;
+        tasks.push(taskText);
+        update();
+        valueInput.value = "";
+      }
+
+      function update() {
+        list.innerHTML = "";
+        tasks.forEach((task, index) => {
+          const li = document.createElement("li");
+
+          const newValue = document.createElement("span");
+          newValue.textContent = task;
+
+          const editBtn = document.createElement("button");
+          editBtn.textContent = "Edit";
+          editBtn.addEventListener("click", () => editTask(index, newValue));
+
+          const removeBtn = document.createElement("button");
+          removeBtn.textContent = "Remove";
+          removeBtn.addEventListener("click", () => removeTask(index));
+
+          li.appendChild(newValue);
+          li.appendChild(editBtn);
+          li.appendChild(removeBtn);
+          list.appendChild(li);
+        });
+      }
+
+      function removeTask(index) {
+        tasks.splice(index, 1);
+        update();
+      }
+
+      function editTask(index) {
+        const editContainer = document.createElement("div");
+
+        const editInput = document.createElement("input");
+        editInput.type = "text";
+        editInput.value.textContent;
+
+        const saveButton = document.createElement("button");
+        saveButton.textContent = "Save";
+        // saveButton.addEventListener("click", () =>
+        // );
+      }
+
+      function saveEditedTask(index, newText) {
+        tasks[index] = newText;
+        update();
+      }
+
+      function cancelEdit(index) {
+        update();
+      }
+    </script>
+  </body>
+</html>

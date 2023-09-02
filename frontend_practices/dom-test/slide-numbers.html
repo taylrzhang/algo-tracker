@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      .container {
+        display: flex;
+        flex-direction: row;
+      }
+      .numberContainer {
+        padding: 10px;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <button class="prev">prev</button>
+      <div class="numberContainer">
+        <span>1</span>
+        <span>2</span>
+        <span>3</span>
+        <span>4</span>
+        <span>5</span>
+      </div>
+      <button class="next">next</button>
+    </div>
+    <script>
+      const prevBtn = document.querySelector(".prev");
+      const nextBtn = document.querySelector(".next");
+      const numberContainer = document.querySelector(".numberContainer");
+      const numbers = document.querySelectorAll("span");
+
+      let currentIndex = 0;
+
+      function updateNumbers() {
+        for (let i = 0; i < numbers.length; i++) {
+          const newIndex = (currentIndex + i) % numbers.length;
+          numbers[i].innerText = newIndex + 1;
+        }
+      }
+
+      prevBtn.addEventListener("click", () => {
+        currentIndex = (currentIndex - 1 + numbers.length) % numbers.length;
+        updateNumbers();
+      });
+
+      nextBtn.addEventListener("click", () => {
+        currentIndex = (currentIndex + 1 + numbers.length) % numbers.length;
+        updateNumbers();
+      });
+    </script>
+  </body>
+</html>
