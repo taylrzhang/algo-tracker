@@ -1,1 +1,1 @@
- ### Repo to practice algorithms following neetcode and writing tests in JavaScript.
+ ### Practice algorithms following neetcode.io and writing tests in JavaScript.
