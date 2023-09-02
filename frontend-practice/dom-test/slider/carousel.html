@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      body {
+        margin: 0;
+        padding: 0;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        min-height: 100vh;
+        background-color: #f0f0f0;
+      }
+      #carousel {
+        width: 296px;
+        overflow: hidden;
+        position: relative;
+        background-color: #b1aefa;
+      }
+
+      #carousel .images {
+        display: flex;
+        width: 100%;
+        transition: transform 0.5s ease-in-out;
+      }
+      #carousel .image {
+        width: 100%;
+        height: 100%;
+        padding: 20px;
+      }
+
+      .dots {
+        display: flex;
+        justify-content: center;
+        margin: 10px;
+      }
+
+      .dot {
+        width: 10px;
+        height: 10px;
+        border-radius: 50%;
+        background-color: #888;
+        margin: 0 5px;
+        cursor: pointer;
+      }
+
+      .dot.active,
+      .dot:hover {
+        background-color: #333;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="carousel">
+      <div class="images">
+        <img class="image" src="images/1.png" />
+        <img class="image" src="images/3.png" />
+        <img class="image" src="images/2.png" />
+        <img class="image" src="images/4.png" />
+        <img class="image" src="images/5.png" />
+        <img class="image" src="images/1.png" />
+      </div>
+      <div class="dots">
+        <span class="dot active"></span>
+        <span class="dot"></span>
+        <span class="dot"></span>
+        <span class="dot"></span>
+        <span class="dot"></span>
+      </div>
+    </div>
+
+    <script>
+      const images = document.querySelector(".images");
+      const dots = document.querySelectorAll(".dot");
+
+      let currIndex = 0;
+
+      function setCarousel() {
+        if (currIndex === images.length - 1) {
+          images.style.transform = "translateX(0)";
+        }
+        images.style.transform = `translateX(-${currIndex * 100}%)`;
+
+        dots.forEach((dot, index) => {
+          if (index === currIndex) {
+            dot.classList.add("active");
+          } else {
+            dot.classList.remove("active");
+          }
+        });
+      }
+
+      function nextSlide() {
+        currIndex = (currIndex + 1) % dots.length;
+        setCarousel();
+      }
+
+      let timer = setInterval(nextSlide, 3000);
+
+      dots.forEach((dot, index) => {
+        dot.addEventListener("click", () => {
+          currIndex = index;
+
+          setCarousel();
+          clearInterval(timer);
+          timer = setInterval(nextSlide, 3000);
+        });
+      });
+    </script>
+  </body>
+</html>

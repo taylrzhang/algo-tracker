@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      body {
+        font-family: Arial, Helvetica, sans-serif;
+        font-size: 1.2rem;
+      }
+      .container {
+        padding: 20px;
+        width: 50vh;
+        background-color: azure;
+        margin: 0 auto;
+        text-align: center;
+        align-items: center;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <div id="boxes">
+        <label class="checkbox">
+          <input type="checkbox" value="volvo" /> Volvo
+        </label>
+        <label class="checkbox">
+          <input type="checkbox" value="saab" /> Saab
+        </label>
+        <label class="checkbox">
+          <input type="checkbox" value="mercedes" /> Mercedes
+        </label>
+        <label class="checkbox">
+          <input type="checkbox" value="audi" /> Audi
+        </label>
+      </div>
+      <div>
+        <button class="selectAll">select all</button>
+        <button class="disableAll">disable all</button>
+        <button class="invert">invert selection</button>
+        <button class="submit">submit</button>
+      </div>
+    </div>
+    <script>
+      const allBtn = document.querySelector(".selectAll");
+      const disableBtn = document.querySelector(".disableAll");
+      const invertBtn = document.querySelector(".invert");
+      const submitBtn = document.querySelector(".submit");
+
+      const checkboxes = document.querySelectorAll(
+        ".checkbox input[type='checkbox']"
+      );
+      allBtn.addEventListener("click", () => {
+        checkboxes.forEach((checkbox) => (checkbox.checked = true));
+      });
+      disableBtn.addEventListener("click", () => {
+        checkboxes.forEach((checkbox) => {
+          if (checkbox.checked) checkbox.checked = false;
+        });
+      });
+      invertBtn.addEventListener("click", () => {
+        checkboxes.forEach(
+          (checkbox) => (checkbox.checked = !checkbox.checked)
+        );
+      });
+      submitBtn.addEventListener("click", () => {
+        let arr = [];
+        checkboxes.forEach((checkbox) => {
+          if (checkbox.checked) arr.push(checkbox.value);
+        });
+        if (arr.length > 0) alert(arr.join(","));
+        else alert("no boxes selected");
+      });
+    </script>
+  </body>
+</html>
