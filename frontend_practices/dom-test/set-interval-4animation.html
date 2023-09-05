@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        #box1, #box2, #box3 {
+            width: 50px;
+            height: 50px;
+            margin-bottom: 20px;
+            position: absolute;
+        }
+        #box1 {
+            background-color: aqua;
+            top: 50px;
+            left: 0;
+        }
+        #box2 {
+            background-color: blue;
+            top: 200px;
+            left: 0;
+        }
+        #box3 {
+            background-color: brown;
+            top: 350px;
+            left: 0;
+        }
+        .container {
+            border-right: 2px #000 solid;
+            width: 800px;
+            height: 100vh;
+            position: relative;
+        }
+        .buttons {
+            margin-bottom: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="buttons">
+        <button id="btn1">box1 move</button>
+        <button id="btn2">box2 move</button>
+        <button id="btn3">box3 animation</button>
+        <button id="btn4">box1 move back</button>
+    </div>
+    <div class="container">
+        <div id="box1"></div>
+        <div id="box2"></div>
+        <div id="box3"></div>
+    </div>
+    <script>
+        const btn1 = document.querySelector("#btn1");
+        const box1 = document.querySelector("#box1");
+
+        const btn2 = document.querySelector("#btn2");
+        const box2 = document.querySelector("#box2");
+
+        const btn3 = document.querySelector("#btn3");
+        const btn4 = document.querySelector("#btn4");
+        let timer;
+
+        function move(obj, target, attr = "left", step = 10, callback ) {
+            clearInterval(obj.timer)
+
+            let curr = parseInt(getComputedStyle(obj, null)[attr]);
+            
+            if(curr > target) step = -step;
+            
+            obj.timer = setInterval(() => {
+                let prev = parseInt(getComputedStyle(obj)[attr]);
+                let next = prev + step;
+
+                if (step < 0 && next <target || step > 0 && next > target) {
+                    next = target
+                }
+
+                obj.style[attr] = next + 'px';
+
+                if ( next === target ) {
+                    clearInterval(obj.timer);
+                    callback();
+                }
+            },30)
+
+        }
+
+        btn1.onclick = function() {
+            move(box1, 800)
+        }
+
+        btn4.onclick = function() {
+            move(box1, 0)
+        }
+
+        btn2.onclick = function() {
+            move(box2, 800)
+        }
+
+        btn3.onclick = function() {
+            move(box3, 400, "width", 10, function() {
+                move(box3, 400, "height", 10, function() {
+                    move(box3, 50, "width", 10, function() {
+                        move(box3, 50, "height", 10, function() {
+                            move(box3, 800, "left", 40, function(){
+                                move(box3, 200, "top", 10)
+                            })
+                        })                      
+                    })
+                })
+            })
+        }
+
+
+    </script>
+</body>
+</html>

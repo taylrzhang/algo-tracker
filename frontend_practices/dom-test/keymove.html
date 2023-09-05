@@ -23,10 +23,12 @@
 
     let leftPosition = 50;
     let topPosition = 50;
+    let direction = null; 
 
-    document.addEventListener("keydown", (event) => {
-      const step = 50;
-      switch (event.code) {
+    const step = 10;
+
+    setInterval(() => {
+      switch (direction) {
         case "ArrowUp":
           topPosition = Math.max(topPosition - step, 0);
           break;
@@ -45,10 +47,18 @@
             window.innerWidth - box.clientWidth
           );
           break;
-      }
+        }
+        box.style.top = `${topPosition}px`;
+        box.style.left = `${leftPosition}px`;
+    }, 30)
 
-      box.style.top = `${topPosition}px`;
-      box.style.left = `${leftPosition}px`;
+    
+    document.addEventListener("keydown", (event) => {
+      direction = event.code;
     });
+
+    document.addEventListener("keyup", (event) => {
+      direction = null
+    })
   </script>
 </html>

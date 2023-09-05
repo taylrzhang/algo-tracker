@@ -44,7 +44,7 @@
       const endBtn = document.getElementById("end");
 
       startBtn.addEventListener("click", () => {
-        clearInterval(timer);
+        clearInterval(timer); //clear
         timer = setInterval(() => {
           i = (i + 1) % images.length;
           photo.setAttribute("src", "images/" + images[i]);
@@ -52,7 +52,7 @@
       });
 
       endBtn.addEventListener("click", () => {
-        clearInterval(timer);
+        clearInterval(timer); //clear
       });
     </script>
   </body>
