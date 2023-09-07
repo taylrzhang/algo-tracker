@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      ul {
+        list-style: none;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <input type="text" id="task" />
+      <button id="add">add</button>
+      <ul id="taskList"></ul>
+    </div>
+    <script>
+      const addBtn = document.querySelector('#add');
+      const taskList = document.querySelector('#taskList');
+
+      addBtn.addEventListener('click', () => {
+        const input = document.querySelector('#task');
+        const task = document.createElement('li');
+
+        const modifyBtn = document.createElement('button');
+        const removeBtn = document.createElement('button');
+
+        modifyBtn.setAttribute('id', 'modify');
+        removeBtn.setAttribute('id', 'remove');
+
+        task.innerText = input.value;
+        modifyBtn.innerText = 'modify';
+        removeBtn.innerText = 'remove';
+
+        taskList.appendChild(task);
+        task.appendChild(modifyBtn);
+        task.appendChild(removeBtn);
+        input.value = '';
+
+        removeBtn.addEventListener('click', () => {
+          task.parentNode.removeChild(task);
+        });
+
+        modifyBtn.addEventListener('click', () => {
+          const newInput = document.createElement('input');
+          const saveBtn = document.createElement('button');
+          const cancelBtn = document.createElement('button');
+          const li = document.createElement('li');
+
+          saveBtn.innerText = 'save';
+          cancelBtn.innerText = 'cancel';
+          newInput.value = task.firstChild.data; //get node value
+
+          li.appendChild(newInput);
+          li.appendChild(saveBtn);
+          li.appendChild(cancelBtn);
+          taskList.replaceChild(li, task);
+
+          cancelBtn.onclick = function () {
+            taskList.replaceChild(task, li);
+          };
+
+          saveBtn.onclick = function () {
+            let textNode = task.firstChild;
+            textNode.data = newInput.value;
+            taskList.replaceChild(task, li);
+          };
+        });
+      });
+    </script>
+  </body>
+</html>

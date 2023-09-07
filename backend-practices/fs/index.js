@@ -66,8 +66,7 @@ fs.readdir(folderPath, (err, files) => {
     const oldFilePath = path.join(folderPath, fileName);
 
     let newFileName;
-    index < 9 ? newFileName = `0${index + 1}` + fileName : newFileName = `${index + 1}` + fileName;
-    // newFileName = `newfile${index}.txt`;
+    index < 9 ? newFileName = `0${index + 1}.` + fileName : newFileName = `${index + 1}` + fileName;
     const newFilePath = path.join(folderPath, newFileName);
 
 
