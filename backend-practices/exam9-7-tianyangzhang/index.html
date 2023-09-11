@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <h1>Number Sorting</h1>
+    <ul id="numberList"></ul>
+    <button id="ascButton">Sort Ascending</button>
+    <button id="descButton">Sort Descending</button>
+    <script>
+      const numberList = document.getElementById('numberList');
+      const ascButton = document.getElementById('ascButton');
+      const descButton = document.getElementById('descButton');
+
+      displayNumbers();
+
+      ascButton.addEventListener('click', () => {
+        sortNumbers('asc');
+      });
+
+      descButton.addEventListener('click', () => {
+        sortNumbers('desc');
+      });
+
+      function displayNumbers() {
+        fetch('/landing')
+          .then((response) => response.json())
+          .then((data) => {
+            data.forEach((number) => {
+              const listItem = document.createElement('li');
+              listItem.textContent = number;
+              numberList.appendChild(listItem);
+            });
+          });
+      }
+
+      function sortNumbers(order) {
+        fetch(order === 'asc' ? '/asc' : '/desc')
+          .then((response) => response.json())
+          .then((data) => {
+            numberList.innerHTML = '';
+            data.forEach((number) => {
+              const listItem = document.createElement('li');
+              listItem.textContent = number;
+              numberList.appendChild(listItem);
+            });
+          });
+      }
+    </script>
+  </body>
+</html>
