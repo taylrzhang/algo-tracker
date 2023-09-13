@@ -1,0 +1,20 @@
+.container-fluid {
+  width: 800px;
+  margin-top: 20px;
+}
+
+.reveal-button {
+  display: block;
+  font-size: .75rem;
+  padding: 0;
+  margin: 0;
+  color: #000;
+}
+
+/* .reveal-button {
+  display: none;
+} */
+
+li {
+  margin-bottom: 10px;
+}
