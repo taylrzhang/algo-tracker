@@ -32,7 +32,7 @@ const App = () => {
       });
     });
 
-    if (choiceOne && choiceTwo) {
+    if (choiceOne && choiceTwo && choiceOne !== choiceTwo) {
       if (choiceOne.text === choiceTwo.text) {
         setTimeout(() => {
           setCards((cards) => {
